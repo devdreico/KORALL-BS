@@ -29,6 +29,6 @@ Para generar y probar el build de producción, usa `npm run build` y `npm run pr
 
 ## Publicación
 
-La landing declara `https://korall-bs.presentto.online/` como URL canónica y enlaza el sitio matriz en `https://korall.presentto.online/`. Para activar el dominio nuevo, despliega la raíz de este repositorio en el hosting elegido y asocia `korall-bs.presentto.online` al proyecto; el dominio actualmente responde `DEPLOYMENT_NOT_FOUND` en Vercel.
+La landing declara `https://korall-bs.vercel.app/` como URL canónica y enlaza el sitio oficial de KORALL en `https://korall.com/`. Los metadatos de SEO y las tarjetas Open Graph apuntan al dominio de Vercel e incluyen el logotipo de KORALL.
 
 El portal oficial del Brawl Stars Championship está en `https://event.supercell.com/brawlstars`. KORALL BS se presenta como equipo independiente y no afiliado a Supercell.

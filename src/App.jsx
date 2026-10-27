@@ -7,13 +7,11 @@ import {
   Brain,
   ChevronRight,
   ExternalLink,
-  Gamepad2,
   Mail,
   Menu,
   MoveRight,
   Smartphone,
   Target,
-  Trophy,
   Users,
   X
 } from "lucide-react";
@@ -25,6 +23,8 @@ const officialLinks = {
   game: "https://supercell.com/en/games/brawlstars/",
   policy: "https://supercell.com/en/fan-content-policy/"
 };
+
+const siteOrigin = "https://korall-bs.vercel.app";
 
 function getInitialLanguage() {
   const queryLanguage = new URLSearchParams(window.location.search).get("lang");
@@ -76,8 +76,8 @@ function App() {
     document.querySelector('meta[property="og:title"]').content = t.metaTitle;
     document.querySelector('meta[property="og:description"]').content = t.metaDescription;
     document.querySelector('meta[property="og:locale"]').content = language === "es" ? "es_ES" : "en_US";
-    document.querySelector('meta[property="og:url"]').content = `https://korall-bs.presentto.online/${language === "en" ? "?lang=en" : ""}`;
-    document.querySelector('link[rel="canonical"]').href = `https://korall-bs.presentto.online/${language === "en" ? "?lang=en" : ""}`;
+    document.querySelector('meta[property="og:url"]').content = `${siteOrigin}/${language === "en" ? "?lang=en" : ""}`;
+    document.querySelector('link[rel="canonical"]').href = `${siteOrigin}/${language === "en" ? "?lang=en" : ""}`;
 
     try {
       localStorage.setItem("korall-language", language);
@@ -190,11 +190,10 @@ function App() {
     <>
       <section className="opening-scroll" ref={openingRef} aria-labelledby="opening-title">
         <div className="opening-stage">
-          <div className="opening-brand">
-            <h1 id="opening-title">
-              <img src="/korall-logo.png" alt="KORALL" />
-              <span>E-SPORTS</span>
-            </h1>
+          <div className="rain-layer" aria-hidden="true"></div>
+          <div className="opening-brand" id="opening-title">
+            <img src="/korall-logo.png" alt="" />
+            <span>E-SPORTS</span>
           </div>
           <div className="opening-words" aria-hidden="true">
             {t.openingSteps.map((step, index) => (
@@ -209,8 +208,7 @@ function App() {
           </div>
           <p className="opening-announcer sr-only" aria-live="polite" aria-atomic="true"></p>
           <div className="opening-progress" aria-hidden="true"><span></span></div>
-          <p className="opening-hint"><ArrowDown size={14} aria-hidden="true" />{t.openingHint}</p>
-          <span className="opening-index" aria-hidden="true">KRL / 01—04</span>
+          <p className="opening-hint" aria-label={t.openingHint}><ArrowDown size={16} aria-hidden="true" /></p>
         </div>
       </section>
       <a className="skip-link" href="#main">{t.skip}</a>
@@ -235,7 +233,7 @@ function App() {
           <a href="#mindset" onClick={() => setMenuOpen(false)}>{t.navMindset}</a>
           <a href="#game" onClick={() => setMenuOpen(false)}>{t.navGame}</a>
           <a href="#circuit" onClick={() => setMenuOpen(false)}>{t.navCircuit}</a>
-          <a href="https://korall.presentto.online" target="_blank" rel="noreferrer">{t.navKorall}<ExternalLink size={12} aria-hidden="true" /></a>
+          <a href="https://korall.com" target="_blank" rel="noreferrer">{t.navKorall}<ExternalLink size={12} aria-hidden="true" /></a>
           <button className="language-toggle" type="button" onClick={changeLanguage} aria-label={t.languageToggle} lang={language === "es" ? "en" : "es"}>{language === "es" ? "EN" : "ES"}</button>
           <a className="nav-cta" href="#join" onClick={() => setMenuOpen(false)}>{t.navJoin}<ArrowUpRight size={14} aria-hidden="true" /></a>
         </nav>
@@ -243,30 +241,24 @@ function App() {
 
       <main id="main">
         <section className="hero" id="top" aria-labelledby="hero-title">
-          <div className="hero-grid-mark" aria-hidden="true"></div>
+          <div className="rain-layer" aria-hidden="true"></div>
           <div className="hero-copy">
             <div className="hero-lockup reveal">
               <span className="hero-logo"><img src="/korall-logo.png" alt="" /></span>
               <span className="hero-wordmark">KORALL<span>BS / KRL</span></span>
             </div>
-            <p className="hero-eyebrow"><span></span>{t.eyebrow}<i>/</i> BRAWL STARS</p>
             <h1 id="hero-title"><HeadingLines lines={t.heroTitle} /></h1>
             <p className="hero-lede">{t.heroLede}</p>
             <div className="hero-actions">
               <a className="button button-light" href="#playbook">{t.heroExplore}<ArrowRight size={16} aria-hidden="true" /></a>
               <ArrowLink href="#join" light>{t.heroApply}</ArrowLink>
             </div>
-            <div className="hero-index"><span>01</span><i></i><span>BS / KRL</span></div>
           </div>
           <figure className="hero-game reveal">
-            <a className="image-frame" href={officialLinks.game} target="_blank" rel="noreferrer" aria-label={t.imageSource}>
+            <a className="image-frame" href={officialLinks.game} target="_blank" rel="noreferrer">
               <img src="/images/brawl-stars/championship-ingame.jpg" alt={t.heroAlt} fetchPriority="high" />
-              <span className="image-open"><ArrowUpRight aria-hidden="true" size={18} /></span>
             </a>
-            <figcaption><span>{t.gameImageCaption}</span><span>{t.imageSource}</span></figcaption>
           </figure>
-          <a className="scroll-cue" href="#playbook"><ArrowDown size={14} aria-hidden="true" />{t.scrollCue}</a>
-          <span className="hero-side-label" aria-hidden="true">KRL / 2026</span>
         </section>
 
         <div className="ticker" aria-label={t.ticker.join(". ")}>
@@ -347,28 +339,21 @@ function App() {
           </div>
           <div className="game-gallery">
             <figure className="game-art game-art-banner reveal">
-              <a className="image-frame" href={officialLinks.championship} target="_blank" rel="noreferrer" aria-label={t.imageBscCaption}>
+              <a className="image-frame" href={officialLinks.championship} target="_blank" rel="noreferrer">
                 <img src="/images/brawl-stars/bsc-2027-hero.jpg" alt={t.imageBscAlt} loading="lazy" />
-                <span className="image-open"><ArrowUpRight aria-hidden="true" size={18} /></span>
               </a>
-              <figcaption><span>{t.imageBscCaption}</span><a href={officialLinks.championship} target="_blank" rel="noreferrer">SUPERCELL / BRAWL STARS <ExternalLink size={12} aria-hidden="true" /></a></figcaption>
             </figure>
             <figure className="game-art game-art-community reveal">
-              <a className="image-frame" href={officialLinks.creator} target="_blank" rel="noreferrer" aria-label={t.imageCreatorCaption}>
+              <a className="image-frame" href={officialLinks.creator} target="_blank" rel="noreferrer">
                 <img src="/images/brawl-stars/creator-coffins.png" alt={t.imageCreatorAlt} loading="lazy" />
-                <span className="image-open"><ArrowUpRight aria-hidden="true" size={18} /></span>
               </a>
-              <figcaption><span>{t.imageCreatorCaption}</span><a href={officialLinks.creator} target="_blank" rel="noreferrer">SUPERCELL / BRAWL STARS <ExternalLink size={12} aria-hidden="true" /></a></figcaption>
             </figure>
             <figure className="game-art game-art-match reveal">
-              <a className="image-frame" href={officialLinks.game} target="_blank" rel="noreferrer" aria-label={t.imageIngameCaption}>
+              <a className="image-frame" href={officialLinks.game} target="_blank" rel="noreferrer">
                 <img src="/images/brawl-stars/championship-ingame.jpg" alt={t.imageIngameAlt} loading="lazy" />
-                <span className="image-open"><ArrowUpRight aria-hidden="true" size={18} /></span>
               </a>
-              <figcaption><span>{t.imageIngameCaption}</span><a href={officialLinks.game} target="_blank" rel="noreferrer">SUPERCELL / BRAWL STARS <ExternalLink size={12} aria-hidden="true" /></a></figcaption>
             </figure>
           </div>
-          <p className="image-attribution reveal"><Gamepad2 size={15} aria-hidden="true" />{t.imageAttribution}</p>
         </section>
 
         <section className="manifesto" aria-labelledby="manifesto-title">
@@ -376,7 +361,7 @@ function App() {
             <SectionLabel number="04">{t.labelManifesto}</SectionLabel>
             <h2 id="manifesto-title"><HeadingLines lines={t.manifestoTitle} /></h2>
             <p>{t.manifestoBody}</p>
-            <ArrowLink href="https://korall.presentto.online" target="_blank" rel="noreferrer" light>{t.mainSite}</ArrowLink>
+            <ArrowLink href="https://korall.com" target="_blank" rel="noreferrer" light>{t.mainSite}</ArrowLink>
           </div>
           <div className="manifesto-index reveal" aria-hidden="true"><span>KRL</span><span>TEAM<br />FIRST</span><span>EST. MMXXIV</span></div>
         </section>
@@ -388,9 +373,8 @@ function App() {
             <p>{t.circuitBody}</p>
             <a className="button button-dark" href="https://event.supercell.com/brawlstars/" target="_blank" rel="noreferrer">{t.circuitLink}<ArrowUpRight size={15} aria-hidden="true" /></a>
           </div>
-          <a className="circuit-banner reveal" href={officialLinks.championship} target="_blank" rel="noreferrer" aria-label={t.imageBscCaption}>
+          <a className="circuit-banner reveal" href={officialLinks.championship} target="_blank" rel="noreferrer">
             <img src="/images/brawl-stars/bsc-2027-hero.jpg" alt={t.imageBscAlt} loading="lazy" />
-            <span><Trophy size={14} aria-hidden="true" />BRAWL STARS CHAMPIONSHIP / 2027</span>
           </a>
         </section>
 
@@ -431,7 +415,7 @@ function App() {
         <a className="footer-brand" href="#top"><img src="/korall-logo.png" alt="" /><span>KORALL <b>BS / KRL</b></span></a>
         <p>{t.footerTagline}</p>
         <nav className="footer-links" aria-label={t.footerAria}>
-          <a href="https://korall.presentto.online" target="_blank" rel="noreferrer">{t.footerKorall}<ArrowUpRight size={13} aria-hidden="true" /></a>
+          <a href="https://korall.com" target="_blank" rel="noreferrer">{t.footerKorall}<ArrowUpRight size={13} aria-hidden="true" /></a>
           <a href="https://event.supercell.com/brawlstars/" target="_blank" rel="noreferrer">{t.footerChampionship}<ArrowUpRight size={13} aria-hidden="true" /></a>
           <a href="mailto:hola@korall.team">{t.footerContact}<ArrowUpRight size={13} aria-hidden="true" /></a>
         </nav>
