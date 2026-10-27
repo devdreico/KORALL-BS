@@ -1,13 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import {
+  Activity,
   ArrowDown,
   ArrowRight,
   ArrowUpRight,
+  Brain,
   ChevronRight,
   ExternalLink,
   Gamepad2,
   Mail,
   Menu,
+  MoveRight,
+  Smartphone,
+  Target,
   Trophy,
   Users,
   X
@@ -59,9 +64,9 @@ function ArrowLink({ children, href, light = false, ...props }) {
 function App() {
   const [language, setLanguage] = useState(getInitialLanguage);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [formStatus, setFormStatus] = useState("");
   const menuButtonRef = useRef(null);
   const menuRef = useRef(null);
+  const openingRef = useRef(null);
   const t = translations[language];
 
   useEffect(() => {
@@ -80,6 +85,53 @@ function App() {
       // The selected language still works when storage is unavailable.
     }
   }, [language, t.metaDescription, t.metaTitle]);
+
+  useEffect(() => {
+    const opening = openingRef.current;
+    if (!opening) return undefined;
+
+    const words = [...opening.querySelectorAll("[data-opening-step]")];
+    const announcer = opening.querySelector(".opening-announcer");
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let frame = 0;
+    let announcedStep = -1;
+
+    function updateOpening() {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(() => {
+        const scrollRange = Math.max(opening.offsetHeight - window.innerHeight, 0);
+        const progress = motionPreference.matches || scrollRange === 0
+          ? 0
+          : Math.min(Math.max(window.scrollY / scrollRange, 0), 1);
+
+        opening.style.setProperty("--opening-progress", progress.toString());
+        words.forEach((word, index) => {
+          const centre = index / (words.length - 1);
+          const opacity = Math.max(0, 1 - Math.abs(progress - centre) * (words.length - 1));
+          word.style.opacity = opacity.toString();
+          word.style.transform = `translateY(${(centre - progress) * 28}px)`;
+        });
+
+        const step = Math.min(words.length - 1, Math.floor(progress * words.length));
+        if (step !== announcedStep && announcer) {
+          announcer.textContent = t.openingSteps[step];
+          announcedStep = step;
+        }
+      });
+    }
+
+    updateOpening();
+    window.addEventListener("scroll", updateOpening, { passive: true });
+    window.addEventListener("resize", updateOpening);
+    motionPreference.addEventListener("change", updateOpening);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", updateOpening);
+      window.removeEventListener("resize", updateOpening);
+      motionPreference.removeEventListener("change", updateOpening);
+    };
+  }, [t.openingSteps]);
 
   useEffect(() => {
     if (!menuOpen) return undefined;
@@ -134,31 +186,33 @@ function App() {
     window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
   }
 
-  function handleTryoutSubmit(event) {
-    event.preventDefault();
-    const form = event.currentTarget;
-    if (!form.reportValidity()) return;
-
-    const values = new FormData(form);
-    const roleLabel = t[languageOptions.find(([value]) => value === values.get("role"))?.[1]];
-    const regionLabel = t[regionOptions.find(([value]) => value === values.get("region"))?.[1]];
-    const body = [
-      `${t.mailPlayer}: ${values.get("playerName").trim()}`,
-      `${t.mailTag}: ${values.get("playerTag").trim()}`,
-      `${t.mailRole}: ${roleLabel}`,
-      `${t.mailRegion}: ${regionLabel}`,
-      `${t.mailAvailability}: ${values.get("availability").trim()}`,
-      `${t.mailEmail}: ${values.get("email").trim()}`,
-      `${t.mailExperience}: ${values.get("experience").trim() || t.mailNone}`,
-      `${t.mailConsent}: yes`
-    ].join("\n");
-
-    setFormStatus(t.formReady);
-    window.location.href = `mailto:hola@korall.team?subject=${encodeURIComponent(t.mailTitle)}&body=${encodeURIComponent(body)}`;
-  }
-
   return (
     <>
+      <section className="opening-scroll" ref={openingRef} aria-labelledby="opening-title">
+        <div className="opening-stage">
+          <div className="opening-brand">
+            <h1 id="opening-title">
+              <img src="/korall-logo.png" alt="KORALL" />
+              <span>E-SPORTS</span>
+            </h1>
+          </div>
+          <div className="opening-words" aria-hidden="true">
+            {t.openingSteps.map((step, index) => (
+              <span
+                className="opening-word"
+                data-opening-step={index}
+                key={`${language}-${step}`}
+              >
+                {step}
+              </span>
+            ))}
+          </div>
+          <p className="opening-announcer sr-only" aria-live="polite" aria-atomic="true"></p>
+          <div className="opening-progress" aria-hidden="true"><span></span></div>
+          <p className="opening-hint"><ArrowDown size={14} aria-hidden="true" />{t.openingHint}</p>
+          <span className="opening-index" aria-hidden="true">KRL / 01—04</span>
+        </div>
+      </section>
       <a className="skip-link" href="#main">{t.skip}</a>
       <header className="site-header">
         <a className="nav-brand" href="#top" aria-label="KORALL BS, inicio">
@@ -178,6 +232,7 @@ function App() {
         </button>
         <nav className={`main-nav${menuOpen ? " is-open" : ""}`} id="main-nav" aria-label={t.navAria} ref={menuRef}>
           <a href="#playbook" onClick={() => setMenuOpen(false)}>{t.navPlaybook}</a>
+          <a href="#mindset" onClick={() => setMenuOpen(false)}>{t.navMindset}</a>
           <a href="#game" onClick={() => setMenuOpen(false)}>{t.navGame}</a>
           <a href="#circuit" onClick={() => setMenuOpen(false)}>{t.navCircuit}</a>
           <a href="https://korall.presentto.online" target="_blank" rel="noreferrer">{t.navKorall}<ExternalLink size={12} aria-hidden="true" /></a>
@@ -242,9 +297,51 @@ function App() {
           <div className="playbook-foot reveal"><span>{t.playbookFootLeft}</span><span>{t.playbookFootRight}<ArrowRight size={13} aria-hidden="true" /></span></div>
         </section>
 
+        <section className="mastery section-light" id="mindset" aria-labelledby="mastery-title">
+          <div className="section-top reveal">
+            <SectionLabel number="02">{t.labelMastery}</SectionLabel>
+            <p className="section-aside">{t.asideMastery}</p>
+          </div>
+          <div className="mastery-heading reveal">
+            <h2 id="mastery-title"><HeadingLines lines={t.masteryTitle} /></h2>
+            <p>{t.masteryIntro}</p>
+          </div>
+          <div className="mastery-grid">
+            {[
+              [Target, t.aimTitle, t.aimBody],
+              [MoveRight, t.dodgeTitle, t.dodgeBody],
+              [Brain, t.mindTitle, t.mindBody],
+              [Smartphone, t.deviceTitle, t.deviceBody]
+            ].map(([Icon, title, body], index) => (
+              <article className="mastery-card reveal" key={title}>
+                <div className="mastery-card-top"><Icon size={18} aria-hidden="true" /><span>0{index + 1}</span></div>
+                <h3>{title}</h3>
+                <p>{body}</p>
+              </article>
+            ))}
+          </div>
+          <div className="practice-plan reveal">
+            <div className="practice-plan-heading">
+              <Activity size={17} aria-hidden="true" />
+              <h3>{t.planTitle}</h3>
+              <p>{t.planIntro}</p>
+            </div>
+            <div className="practice-plan-grid">
+              {[1, 2, 3, 4].map((step) => (
+                <article className="practice-step" key={step}>
+                  <span>{t[`plan${step}Time`]}</span>
+                  <h4>{t[`plan${step}Title`]}</h4>
+                  <p>{t[`plan${step}Body`]}</p>
+                </article>
+              ))}
+            </div>
+            <p className="practice-note">{t.practiceNote}</p>
+          </div>
+        </section>
+
         <section className="game-section" id="game" aria-labelledby="game-title">
           <div className="game-heading reveal">
-            <SectionLabel number="02">{t.labelGame}</SectionLabel>
+            <SectionLabel number="03">{t.labelGame}</SectionLabel>
             <h2 id="game-title"><HeadingLines lines={t.gameTitle} /></h2>
             <p>{t.gameIntro}</p>
           </div>
@@ -276,7 +373,7 @@ function App() {
 
         <section className="manifesto" aria-labelledby="manifesto-title">
           <div className="manifesto-copy reveal">
-            <SectionLabel number="03">{t.labelManifesto}</SectionLabel>
+            <SectionLabel number="04">{t.labelManifesto}</SectionLabel>
             <h2 id="manifesto-title"><HeadingLines lines={t.manifestoTitle} /></h2>
             <p>{t.manifestoBody}</p>
             <ArrowLink href="https://korall.presentto.online" target="_blank" rel="noreferrer" light>{t.mainSite}</ArrowLink>
@@ -286,7 +383,7 @@ function App() {
 
         <section className="circuit section-light" id="circuit" aria-labelledby="circuit-title">
           <div className="circuit-copy reveal">
-            <SectionLabel number="04">{t.labelCircuit}</SectionLabel>
+            <SectionLabel number="05">{t.labelCircuit}</SectionLabel>
             <h2 id="circuit-title"><HeadingLines lines={t.circuitTitle} /></h2>
             <p>{t.circuitBody}</p>
             <a className="button button-dark" href="https://event.supercell.com/brawlstars/" target="_blank" rel="noreferrer">{t.circuitLink}<ArrowUpRight size={15} aria-hidden="true" /></a>
@@ -299,13 +396,20 @@ function App() {
 
         <section className="join" id="join" aria-labelledby="join-title">
           <div className="join-content reveal">
-            <SectionLabel number="05">{t.labelJoin}</SectionLabel>
+            <SectionLabel number="06">{t.labelJoin}</SectionLabel>
             <h2 id="join-title"><HeadingLines lines={t.joinTitle} /></h2>
             <p>{t.joinIntro}</p>
             <p className="join-note">{t.joinNote}</p>
             <span className="join-signature"><Users size={15} aria-hidden="true" /> KORALL BS / KRL</span>
           </div>
-          <form className="tryout-form reveal" onSubmit={handleTryoutSubmit} aria-describedby="form-privacy">
+          <form
+            className="tryout-form reveal"
+            action="https://formspree.io/f/xdeeejrr"
+            method="POST"
+            aria-describedby="form-privacy"
+          >
+            <input type="hidden" name="_subject" value={t.mailTitle} />
+            <input type="hidden" name="_language" value={language} />
             <p className="form-kicker"><Mail size={14} aria-hidden="true" />{t.formKicker}</p>
             <div className="form-grid">
               <label className="form-field"><span>{t.aliasLabel}</span><input name="playerName" type="text" autoComplete="nickname" maxLength={32} placeholder={t.aliasPlaceholder} required /></label>
@@ -319,7 +423,6 @@ function App() {
             <label className="consent-field"><input name="consent" type="checkbox" required /><span>{t.consent}</span></label>
             <button className="button button-light form-submit" type="submit">{t.submitLabel}<ChevronRight size={15} aria-hidden="true" /></button>
             <p className="form-privacy" id="form-privacy">{t.formPrivacy}</p>
-            <p className="form-status" role="status" aria-live="polite">{formStatus}</p>
           </form>
         </section>
       </main>

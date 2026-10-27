@@ -25,7 +25,22 @@ img { display: block; max-width: 100%; }
 
 .skip-link { position: fixed; z-index: 30; top: 12px; left: 12px; padding: 12px 16px; color: var(--black); background: var(--white); transform: translateY(-160%); }
 .skip-link:focus { transform: translateY(0); }
-.site-header { position: absolute; z-index: 20; inset: 0 0 auto; display: flex; min-height: 82px; align-items: center; justify-content: space-between; padding: 0 5.2%; border-bottom: 1px solid rgb(255 255 255 / 15%); }
+.opening-scroll { position: relative; height: 260svh; background: var(--black); }
+.opening-stage { position: sticky; top: 0; display: grid; height: 100svh; min-height: 480px; place-items: center; overflow: hidden; background: radial-gradient(ellipse at 50% 45%, #1b1b1b 0, var(--black) 56%); isolation: isolate; }
+.opening-stage::before { position: absolute; z-index: -1; inset: 0; background-image: linear-gradient(rgb(255 255 255 / 3%) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / 3%) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse at center, #000, transparent 75%); content: ""; }
+.opening-brand { position: absolute; top: calc(50% - 92px); left: 50%; transform: translate(-50%, -50%); }
+.opening-brand h1 { display: grid; justify-items: center; gap: 17px; margin: 0; font-size: 11px; font-weight: 800; letter-spacing: .36em; }
+.opening-brand img { width: clamp(100px, 17vw, 154px); height: clamp(100px, 17vw, 154px); object-fit: contain; filter: brightness(0) invert(1); }
+.opening-brand h1 span { padding-left: .36em; color: #bdbdbd; }
+.opening-words { position: absolute; top: calc(50% + 85px); left: 0; width: 100%; min-height: 54px; text-align: center; }
+.opening-word { position: absolute; inset: 0; color: var(--white); font-size: clamp(25px, 5vw, 43px); font-weight: 900; letter-spacing: .04em; opacity: 0; transition: opacity .16s linear, transform .16s ease-out; }
+.opening-word[data-opening-step="0"] { opacity: 1; }
+.opening-progress { position: absolute; bottom: 76px; left: 50%; width: min(230px, 42vw); height: 1px; overflow: hidden; background: #454545; transform: translateX(-50%); }
+.opening-progress span { display: block; width: 100%; height: 100%; background: var(--white); transform: scaleX(var(--opening-progress, 0)); transform-origin: left; }
+.opening-hint { position: absolute; bottom: 31px; left: 50%; display: flex; align-items: center; gap: 8px; margin: 0; color: #aaa; font-size: 8px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; transform: translateX(-50%); white-space: nowrap; }
+.opening-index { position: absolute; top: 50%; right: 3%; color: #777; font-size: 8px; font-weight: 800; writing-mode: vertical-rl; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); border: 0; }
+.site-header { position: sticky; z-index: 20; top: 0; display: flex; min-height: 82px; align-items: center; justify-content: space-between; margin-bottom: -82px; padding: 0 5.2%; border-bottom: 1px solid rgb(255 255 255 / 15%); background: rgb(9 9 9 / 96%); backdrop-filter: blur(12px); }
 .nav-brand, .footer-brand { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 900; }
 .nav-brand img { width: 31px; height: 40px; object-fit: contain; filter: brightness(0) invert(1); }
 .nav-brand b, .footer-brand b { display: block; margin-top: 3px; color: #a9a9a9; font-size: 8px; font-weight: 700; }
@@ -106,6 +121,29 @@ figure figcaption a { display: inline-flex; align-items: center; gap: 6px; color
 .playbook-foot { display: flex; justify-content: space-between; gap: 18px; padding-top: 17px; color: #626262; font-size: 8px; font-weight: 800; }
 .playbook-foot > span:last-child { display: flex; align-items: center; gap: 10px; color: var(--ink); }
 
+.mastery { padding: 82px 9% 88px; }
+.mastery-heading { display: flex; align-items: end; justify-content: space-between; gap: 38px; padding: 44px 0 31px; }
+.mastery-heading h2 { max-width: 650px; margin: 0; font-size: 54px; font-weight: 900; line-height: .98; }
+.mastery-heading > p { max-width: 430px; margin: 0 0 3px; color: #555; font-size: 11px; line-height: 1.85; }
+.mastery-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid #c5c5c2; border-bottom: 1px solid #c5c5c2; }
+.mastery-card { min-width: 0; min-height: 236px; padding: 18px 17px 24px 0; }
+.mastery-card + .mastery-card { padding-left: 17px; border-left: 1px solid #c5c5c2; }
+.mastery-card-top { display: flex; align-items: center; justify-content: space-between; color: #656565; }
+.mastery-card-top span { font-size: 8px; font-weight: 800; }
+.mastery-card h3 { margin: 30px 0 11px; font-size: 10px; font-weight: 900; }
+.mastery-card p { margin: 0; color: #595959; font-size: 9px; line-height: 1.8; }
+.practice-plan { margin-top: 33px; padding: 25px; color: var(--white); background: var(--ink); }
+.practice-plan-heading { display: grid; grid-template-columns: auto 1fr minmax(220px, .9fr); align-items: center; gap: 12px; }
+.practice-plan-heading h3 { margin: 0; font-size: 12px; font-weight: 900; text-transform: uppercase; }
+.practice-plan-heading > p { margin: 0; color: #c1c1c1; font-size: 9px; line-height: 1.7; }
+.practice-plan-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 21px; border-top: 1px solid #535353; }
+.practice-step { min-width: 0; padding: 16px 15px 3px 0; }
+.practice-step + .practice-step { padding-left: 15px; border-left: 1px solid #535353; }
+.practice-step > span { color: #aaa; font-size: 8px; font-weight: 800; }
+.practice-step h4 { margin: 16px 0 8px; font-size: 9px; font-weight: 900; }
+.practice-step p { margin: 0; color: #c1c1c1; font-size: 8px; line-height: 1.8; }
+.practice-note { margin: 18px 0 0; padding-top: 13px; color: #b8b8b8; border-top: 1px solid #535353; font-size: 8px; line-height: 1.7; }
+
 .game-section { padding: 91px 9% 95px; color: var(--white); background: var(--black); }
 .game-heading { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 24px 40px; margin-bottom: 35px; }
 .game-heading .section-label { grid-column: 1 / -1; color: #aaa; }
@@ -166,8 +204,7 @@ figure figcaption a { display: inline-flex; align-items: center; gap: 6px; color
 .consent-field { display: flex; align-items: flex-start; gap: 8px; margin-top: 14px; color: #c4c4c4; font-size: 8px; line-height: 1.6; cursor: pointer; }
 .consent-field input { width: 15px; height: 15px; flex: 0 0 auto; margin: 1px 0 0; accent-color: var(--white); }
 .form-submit { min-height: 43px; margin-top: 15px; }
-.form-privacy, .form-status { margin: 10px 0 0; color: #a0a0a0; font-size: 7px; line-height: 1.7; }
-.form-status { color: var(--white); font-size: 9px; font-weight: 700; }
+.form-privacy { margin: 10px 0 0; color: #a0a0a0; font-size: 7px; line-height: 1.7; }
 
 .site-footer { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 16px 25px; padding: 29px 5.2% 16px; color: var(--white); background: var(--black); }
 .footer-brand img { width: 28px; height: 36px; object-fit: contain; filter: brightness(0) invert(1); }
@@ -194,12 +231,15 @@ figure figcaption a { display: inline-flex; align-items: center; gap: 6px; color
   .main-nav { gap: 17px; }
   .hero { gap: 4%; padding-right: 6%; padding-left: 6%; }
   .hero h1 { font-size: 68px; }
-  .playbook-heading h2, .game-heading h2, .manifesto-copy h2, .circuit-copy h2, .join-content h2 { font-size: 48px; }
+  .playbook-heading h2, .mastery-heading h2, .game-heading h2, .manifesto-copy h2, .circuit-copy h2, .join-content h2 { font-size: 48px; }
   .hero-game .image-frame { min-height: 290px; }
-  .playbook, .game-section, .circuit { padding-right: 7%; padding-left: 7%; }
+  .playbook, .mastery, .game-section, .circuit { padding-right: 7%; padding-left: 7%; }
   .training-step { padding-right: 13px; }
   .training-step + .training-step { padding-left: 13px; }
   .training-step + .training-step .step-line { left: 13px; }
+  .mastery-card { padding-right: 12px; }
+  .mastery-card + .mastery-card { padding-left: 12px; }
+  .practice-plan { padding: 21px; }
   .manifesto { padding-right: 9%; padding-left: 9%; }
   .join { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 4%; padding-right: 6%; padding-left: 6%; }
   .join-content h2 { font-size: 42px; }
@@ -208,7 +248,15 @@ figure figcaption a { display: inline-flex; align-items: center; gap: 6px; color
 
 @media (max-width: 720px) {
   html { scroll-padding-top: 70px; }
-  .site-header { min-height: 70px; padding: 0 20px; }
+  .opening-stage { min-height: 420px; }
+  .opening-brand { top: calc(50% - 72px); }
+  .opening-brand h1 { gap: 13px; font-size: 9px; }
+  .opening-words { top: calc(50% + 72px); }
+  .opening-word { font-size: clamp(23px, 7vw, 36px); }
+  .opening-progress { bottom: 68px; }
+  .opening-hint { bottom: 28px; }
+  .opening-index { right: 16px; }
+  .site-header { min-height: 70px; margin-bottom: -70px; padding: 0 20px; }
   .nav-brand img { width: 28px; height: 36px; }
   .menu-toggle { display: grid; width: 42px; height: 42px; place-items: center; color: var(--white); border: 1px solid #777; background: transparent; cursor: pointer; }
   .main-nav { position: absolute; top: 69px; right: 0; left: 0; display: flex; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 20px 17px; background: var(--black); border-bottom: 1px solid #444; visibility: hidden; opacity: 0; transform: translateY(-8px); transition: opacity .2s ease, transform .2s ease, visibility .2s; }
@@ -235,12 +283,12 @@ figure figcaption a { display: inline-flex; align-items: center; gap: 6px; color
   .hero-side-label { top: 48%; right: 12px; left: auto; font-size: 7px; }
   .ticker { padding: 13px 0; }
   .ticker-track span { gap: 15px; padding-right: 15px; font-size: 8px; }
-  .playbook, .game-section { padding: 65px 22px; }
+  .playbook, .mastery, .game-section { padding: 65px 22px; }
   .section-top { align-items: flex-start; gap: 14px; }
   .section-label, .section-aside { font-size: 7px; }
   .section-aside { text-align: right; }
   .playbook-heading { align-items: flex-start; flex-direction: column; gap: 16px; padding: 32px 0 25px; }
-  .playbook-heading h2, .game-heading h2 { font-size: 47px; }
+  .playbook-heading h2, .mastery-heading h2, .game-heading h2 { font-size: 43px; }
   .playbook-heading > p, .game-heading > p { max-width: 480px; font-size: 11px; }
   .training-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .training-step { min-height: 190px; padding: 16px 10px 20px 0; }
@@ -253,6 +301,25 @@ figure figcaption a { display: inline-flex; align-items: center; gap: 6px; color
   .training-step + .training-step .step-line { left: 12px; }
   .training-step:nth-child(3) .step-line { left: 0; }
   .playbook-foot { gap: 10px; font-size: 6px; }
+  .mastery-heading { align-items: flex-start; flex-direction: column; gap: 15px; padding: 32px 0 25px; }
+  .mastery-heading > p { font-size: 10px; }
+  .mastery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mastery-card { min-height: 0; padding: 16px 12px 20px 0; }
+  .mastery-card + .mastery-card { padding-left: 12px; }
+  .mastery-card:nth-child(3) { padding-left: 0; border-top: 1px solid #c5c5c2; border-left: 0; }
+  .mastery-card:nth-child(4) { border-top: 1px solid #c5c5c2; }
+  .mastery-card h3 { margin-top: 22px; }
+  .mastery-card p { font-size: 9px; }
+  .practice-plan { margin-top: 22px; padding: 17px 14px; }
+  .practice-plan-heading { grid-template-columns: auto 1fr; }
+  .practice-plan-heading > p { grid-column: 1 / -1; }
+  .practice-plan-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .practice-step { padding: 14px 10px 14px 0; }
+  .practice-step + .practice-step { padding-left: 10px; }
+  .practice-step:nth-child(3) { padding-left: 0; border-top: 1px solid #535353; border-left: 0; }
+  .practice-step:nth-child(4) { border-top: 1px solid #535353; }
+  .practice-step p { font-size: 8px; }
+  .practice-note { font-size: 8px; }
   .game-heading { grid-template-columns: 1fr; gap: 14px; margin-bottom: 26px; }
   .game-heading .section-label { grid-column: auto; }
   .game-heading h2 { font-size: 44px; }
@@ -295,10 +362,17 @@ figure figcaption a { display: inline-flex; align-items: center; gap: 6px; color
   .hero { padding-right: 18px; padding-left: 18px; }
   .hero h1 { font-size: 45px; }
   .hero-side-label { right: 8px; }
-  .playbook, .game-section, .circuit, .join { padding-right: 18px; padding-left: 18px; }
+  .playbook, .mastery, .game-section, .circuit, .join { padding-right: 18px; padding-left: 18px; }
   .training-step h3 { font-size: 9px; }
   .training-step p { font-size: 8px; }
   .playbook-foot { font-size: 5px; }
+  .mastery-heading h2 { font-size: 36px; }
+  .mastery-card { padding-right: 9px; }
+  .mastery-card + .mastery-card { padding-left: 9px; }
+  .mastery-card:nth-child(3) { padding-left: 0; }
+  .mastery-card h3 { font-size: 9px; }
+  .mastery-card p { font-size: 8px; }
+  .practice-plan { padding-right: 11px; padding-left: 11px; }
   .game-art figcaption { font-size: 6px; }
   .game-art figcaption a { font-size: 5px; }
   .join-content h2 { font-size: 37px; }
@@ -306,5 +380,6 @@ figure figcaption a { display: inline-flex; align-items: center; gap: 6px; color
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .opening-scroll { height: 100svh; }
   .js .reveal { opacity: 1; transform: none; }
 }

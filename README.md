@@ -2,7 +2,9 @@
 
 Landing de KORALL BS (KRL), equipo internacional de entrenamiento y competición de Brawl Stars, construida con React y Vite.
 
-La interfaz está disponible en español e inglés: `/?lang=es` y `/?lang=en`. El idioma elegido se puede compartir y también se guarda en el almacenamiento local del navegador. La solicitud de tryout valida los campos en el navegador y abre un borrador de correo a `hola@korall.team`; la web no almacena ni envía los datos por sí misma. Para recibir solicitudes sin una aplicación de correo, habrá que configurar un servicio de formularios o un endpoint propio antes del lanzamiento.
+La interfaz está disponible en español e inglés: `/?lang=es` y `/?lang=en`. El idioma elegido se puede compartir y también se guarda en el almacenamiento local del navegador. La entrada es una secuencia visual ligada al desplazamiento: las palabras cambian al bajar y vuelven atrás al subir; con la preferencia de movimiento reducido se omite la secuencia larga. La guía de mejora cubre puntería, esquivas, gestión de presión, dispositivos y una sesión de práctica de 30–40 minutos.
+
+El formulario de solicitud valida sus campos en el navegador y los envía mediante POST a Formspree (`https://formspree.io/f/xdeeejrr`). Quien lo envía debe aceptar explícitamente la recepción y el uso de sus datos por KORALL BS para responder a la solicitud. La respuesta y el tratamiento del envío dependen de la configuración de esa cuenta de Formspree.
 
 La tipografía se carga desde Google Fonts. Los artes y capturas de Brawl Stars se sirven localmente desde `public/images/brawl-stars/`.
 
