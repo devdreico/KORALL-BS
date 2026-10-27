@@ -1,28 +1,30 @@
-const translations = {
+export const translations = {
   es: {
     skip: "Saltar al contenido",
     navAria: "Navegación principal",
     navPlaybook: "Método",
+    navGame: "El juego",
     navCircuit: "Circuito",
     navKorall: "Korall Team",
     navJoin: "Únete al team",
     languageToggle: "Cambiar idioma a inglés",
     menuOpen: "Abrir menú",
     menuClose: "Cerrar menú",
-    metaTitle: "KORALL BS — El siguiente nivel",
-    heroAlt: "Equipo de esports preparándose para competir",
+    heroAlt: "Captura oficial de una partida competitiva de Brawl Stars",
     eyebrow: "EQUIPO INTERNACIONAL",
-    heroTitle: "EL META<br />CAMBIA.<br /><span>KRL TAMBIÉN.</span>",
+    heroTitle: ["EL META", "CAMBIA.", "KRL TAMBIÉN."],
     heroLede: "Equipo internacional de entrenamiento y competición de Brawl Stars. Leemos el meta, entrenamos con método y jugamos con una ambición clara: competir en lo más alto.",
     heroExplore: "Conoce el método",
     heroApply: "Quiero competir",
+    gameImageCaption: "BRAWL STARS / PARTIDA IN-GAME",
+    imageSource: "IMAGEN OFICIAL DEL JUEGO",
     railTrain: "ENTRENA CON INTENCIÓN",
     railCompete: "COMPITE COMO EQUIPO",
-    scrollCue: "Baja para explorar",
-    ticker: "ENTRENA CON INTENCIÓN <b>✳</b> JUEGA COMO EQUIPO <b>✳</b> REVISA. REINICIA. REPITE. <b>✳</b> KORALL BS <b>✳</b>",
-    labelPlaybook: "<span>01</span> / CÓMO COMPETIMOS",
-    asideTeamPlay: "BRAWL STARS <span>·</span> JUEGO EN EQUIPO",
-    playbookTitle: "EL CLUTCH<br />SE <span>ENTRENA.</span>",
+    scrollCue: "Desliza para descubrir",
+    ticker: ["ENTRENA CON INTENCIÓN", "JUEGA COMO EQUIPO", "REVISA. REINICIA. REPITE.", "KORALL BS"],
+    labelPlaybook: "CÓMO COMPETIMOS",
+    asideTeamPlay: "BRAWL STARS / JUEGO EN EQUIPO",
+    playbookTitle: ["EL CLUTCH", "SE", "ENTRENA."],
     playbookIntro: "En Brawl Stars, una buena jugada empieza antes de entrar al mapa. Nuestro estándar: lectura, comunicación y revisión constante.",
     step1Title: "LEE EL META",
     step1Body: "Estudia mapas, modos y enfrentamientos. Entiende por qué funciona una composición, no solo cuándo elegirla.",
@@ -34,18 +36,26 @@ const translations = {
     step4Body: "Analiza las partidas, encuentra patrones y transforma cada error en un objetivo concreto para el siguiente bloque.",
     playbookFootLeft: "NO HAY ATAJOS AL SIGUIENTE NIVEL.",
     playbookFootRight: "HAY PROCESO",
-    manifestoAlt: "Jugadores trabajando en equipo durante un partido",
-    imageIndex: "KRL / EL EQUIPO PRIMERO",
-    labelManifesto: "<span>02</span> / MÁS QUE UNA TAG",
-    manifestoTitle: "EL TALENTO<br />NO CRECE<br /><span>SOLO.</span>",
+    labelGame: "EL UNIVERSO BRAWL STARS",
+    gameTitle: ["NO ES SOLO", "UNA PARTIDA."],
+    gameIntro: "Estrategia en el draft, lectura del mapa y decisiones en segundos. Así se ve el juego cuando cada integrante juega por el equipo.",
+    imageBscAlt: "Arte oficial de Brawl Stars Championship 2027",
+    imageBscCaption: "BRAWL STARS CHAMPIONSHIP / 2027",
+    imageCreatorAlt: "Arte oficial de la campaña #CreatorCoffins de Brawl Stars",
+    imageCreatorCaption: "BRAWL STARS / COMUNIDAD",
+    imageIngameAlt: "Captura oficial in-game publicada por Brawl Stars",
+    imageIngameCaption: "BRAWL STARS / CAPTURA IN-GAME",
+    imageAttribution: "Arte y capturas: Supercell / Brawl Stars. Se muestran sin modificar.",
+    labelManifesto: "MÁS QUE UNA TAG",
+    manifestoTitle: ["EL TALENTO", "NO CRECE", "SOLO."],
     manifestoBody: "KORALL BS forma parte de una comunidad que busca potencial y lo convierte en camino. Disciplina, equipo y ambición para competir con propósito.",
     mainSite: "Conoce KORALL Team",
-    labelCircuit: "<span>03</span> / EL ESCENARIO",
-    circuitTitle: "EL SIGUIENTE<br />SET <span>EMPIEZA<br />AQUÍ.</span>",
+    labelCircuit: "EL ESCENARIO",
+    circuitTitle: ["EL SIGUIENTE", "SET", "EMPIEZA", "AQUÍ."],
     circuitBody: "Brawl Stars Championship es el circuito competitivo oficial de Brawl Stars. Consulta en Supercell las novedades, fechas y detalles vigentes.",
     circuitLink: "Brawl Stars Championship",
-    labelJoin: "<span>04</span> / TU SIGUIENTE PARTIDA",
-    joinTitle: "¿LISTO PARA<br /><span>JUGAR EN KRL?</span>",
+    labelJoin: "TU SIGUIENTE PARTIDA",
+    joinTitle: ["¿LISTO PARA", "JUGAR EN KRL?"],
     joinIntro: "Buscamos personas con mentalidad de equipo, ganas de entrenar y hambre de competir.",
     joinNote: "Cuéntanos quién eres y cómo juegas. Se abrirá un borrador de correo para que revises y envíes tu solicitud.",
     formKicker: "SOLICITUD DE TRYOUT",
@@ -92,32 +102,36 @@ const translations = {
     footerChampionship: "BRAWL STARS CHAMPIONSHIP",
     footerContact: "CONTACTO",
     footerDisclaimer: "KORALL BS es un equipo independiente y no está afiliado ni respaldado por Supercell.",
+    fanNotice: "Este material es no oficial y no está respaldado por Supercell. Más información en la Política de contenido de fans: www.supercell.com/fan-content-policy.",
+    metaTitle: "KORALL BS — El siguiente nivel",
     metaDescription: "KORALL BS (KRL), equipo internacional de entrenamiento y competición de Brawl Stars. Juega con intención. Compite para subir de nivel."
   },
   en: {
     skip: "Skip to content",
     navAria: "Main navigation",
     navPlaybook: "Playbook",
+    navGame: "The game",
     navCircuit: "Circuit",
     navKorall: "Korall Team",
     navJoin: "Join the team",
     languageToggle: "Switch language to Spanish",
     menuOpen: "Open menu",
     menuClose: "Close menu",
-    metaTitle: "KORALL BS — Play the next level",
-    heroAlt: "Esports team preparing to compete",
+    heroAlt: "Official screenshot of a Brawl Stars competitive match",
     eyebrow: "INTERNATIONAL TEAM",
-    heroTitle: "THE META<br />CHANGES.<br /><span>KRL ADAPTS.</span>",
+    heroTitle: ["THE META", "CHANGES.", "KRL ADAPTS."],
     heroLede: "An international Brawl Stars training and competition team. We read the meta, train with purpose, and share one ambition: compete at the highest level.",
     heroExplore: "Explore our playbook",
     heroApply: "I want to compete",
+    gameImageCaption: "BRAWL STARS / IN-GAME MATCH",
+    imageSource: "OFFICIAL GAME ART",
     railTrain: "TRAIN WITH INTENT",
     railCompete: "COMPETE AS ONE",
     scrollCue: "Scroll to explore",
-    ticker: "TRAIN WITH INTENT <b>✳</b> PLAY AS ONE <b>✳</b> REVIEW. RESET. REPEAT. <b>✳</b> KORALL BS <b>✳</b>",
-    labelPlaybook: "<span>01</span> / HOW WE COMPETE",
-    asideTeamPlay: "BRAWL STARS <span>·</span> TEAM PLAY",
-    playbookTitle: "CLUTCH<br />IS <span>TRAINED.</span>",
+    ticker: ["TRAIN WITH INTENT", "PLAY AS ONE", "REVIEW. RESET. REPEAT.", "KORALL BS"],
+    labelPlaybook: "HOW WE COMPETE",
+    asideTeamPlay: "BRAWL STARS / TEAM PLAY",
+    playbookTitle: ["CLUTCH", "IS", "TRAINED."],
     playbookIntro: "In Brawl Stars, a great play starts before you enter the map. Our standard: awareness, communication, and consistent review.",
     step1Title: "READ THE META",
     step1Body: "Study maps, modes, and matchups. Understand why a composition works, not just when to pick it.",
@@ -129,18 +143,26 @@ const translations = {
     step4Body: "Review your games, spot patterns, and turn every mistake into a clear goal for the next block.",
     playbookFootLeft: "THERE ARE NO SHORTCUTS TO THE NEXT LEVEL.",
     playbookFootRight: "JUST THE WORK",
-    manifestoAlt: "Players working together during a match",
-    imageIndex: "KRL / TEAM FIRST",
-    labelManifesto: "<span>02</span> / MORE THAN A TAG",
-    manifestoTitle: "TALENT<br />DOESN'T GROW<br /><span>ALONE.</span>",
+    labelGame: "THE BRAWL STARS UNIVERSE",
+    gameTitle: ["MORE THAN", "A MATCH."],
+    gameIntro: "Draft strategy, map awareness, and split-second decisions. This is the game when every player shows up for the team.",
+    imageBscAlt: "Official Brawl Stars Championship 2027 artwork",
+    imageBscCaption: "BRAWL STARS CHAMPIONSHIP / 2027",
+    imageCreatorAlt: "Official Brawl Stars #CreatorCoffins campaign artwork",
+    imageCreatorCaption: "BRAWL STARS / COMMUNITY",
+    imageIngameAlt: "Official in-game screenshot published by Brawl Stars",
+    imageIngameCaption: "BRAWL STARS / IN-GAME CAPTURE",
+    imageAttribution: "Artwork and screenshots: Supercell / Brawl Stars. Shown unmodified.",
+    labelManifesto: "MORE THAN A TAG",
+    manifestoTitle: ["TALENT", "DOESN'T GROW", "ALONE."],
     manifestoBody: "KORALL BS is part of a community that spots potential and helps turn it into progress. Discipline, teamwork, and the drive to compete with purpose.",
     mainSite: "Discover KORALL Team",
-    labelCircuit: "<span>03</span> / THE STAGE",
-    circuitTitle: "YOUR NEXT<br />SET <span>STARTS<br />HERE.</span>",
+    labelCircuit: "THE STAGE",
+    circuitTitle: ["YOUR NEXT", "SET", "STARTS", "HERE."],
     circuitBody: "Brawl Stars Championship is the official Brawl Stars competitive circuit. Check Supercell for the latest updates, dates, and details.",
     circuitLink: "Brawl Stars Championship",
-    labelJoin: "<span>04</span> / YOUR NEXT MATCH",
-    joinTitle: "READY TO<br /><span>PLAY FOR KRL?</span>",
+    labelJoin: "YOUR NEXT MATCH",
+    joinTitle: ["READY TO", "PLAY FOR KRL?"],
     joinIntro: "We look for team-first people who are ready to train, improve, and compete.",
     joinNote: "Tell us who you are and how you play. We'll prepare an email draft for you to review and send.",
     formKicker: "TRYOUT APPLICATION",
@@ -187,158 +209,24 @@ const translations = {
     footerChampionship: "BRAWL STARS CHAMPIONSHIP",
     footerContact: "CONTACT",
     footerDisclaimer: "KORALL BS is an independent team and is not affiliated with or endorsed by Supercell.",
+    fanNotice: "This material is unofficial and is not endorsed by Supercell. For more information see Supercell's Fan Content Policy: www.supercell.com/fan-content-policy.",
+    metaTitle: "KORALL BS — Play the next level",
     metaDescription: "KORALL BS (KRL), an international Brawl Stars training and competition team. Play with intent. Compete for the next level."
   }
 };
 
-const menuButton = document.querySelector(".menu-toggle");
-const navigation = document.querySelector(".main-nav");
-const languageButton = document.querySelector(".language-toggle");
-const form = document.querySelector("#tryout-form");
-const formStatus = document.querySelector("#form-status");
-const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+export const languageOptions = [
+  ["player", "rolePlayer"],
+  ["coach", "roleCoach"],
+  ["analyst", "roleAnalyst"],
+  ["other", "roleOther"]
+];
 
-function closeMenu() {
-  menuButton.setAttribute("aria-expanded", "false");
-  menuButton.setAttribute("aria-label", translations[document.documentElement.lang].menuOpen);
-  navigation.classList.remove("is-open");
-}
-
-function applyLanguage(language, updateAddress = false) {
-  const selectedLanguage = translations[language] ? language : "es";
-  const copy = translations[selectedLanguage];
-  document.documentElement.lang = selectedLanguage;
-  document.title = copy.metaTitle;
-
-  document.querySelectorAll("[data-i18n]").forEach((element) => {
-    const value = copy[element.dataset.i18n];
-    if (value !== undefined) element.textContent = value;
-  });
-  document.querySelectorAll("[data-i18n-html]").forEach((element) => {
-    const value = copy[element.dataset.i18nHtml];
-    if (value !== undefined) element.innerHTML = value;
-  });
-  document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
-    const value = copy[element.dataset.i18nPlaceholder];
-    if (value !== undefined) element.placeholder = value;
-  });
-  document.querySelectorAll("[data-i18n-alt]").forEach((element) => {
-    const value = copy[element.dataset.i18nAlt];
-    if (value !== undefined) element.alt = value;
-  });
-  document.querySelectorAll("[data-i18n-aria]").forEach((element) => {
-    const value = copy[element.dataset.i18nAria];
-    if (value !== undefined) element.setAttribute("aria-label", value);
-  });
-
-  document.querySelector('meta[name="description"]').content = copy.metaDescription;
-  document.querySelector('meta[property="og:title"]').content = copy.metaTitle;
-  document.querySelector('meta[property="og:description"]').content = copy.metaDescription;
-  document.querySelector('meta[property="og:locale"]').content = selectedLanguage === "es" ? "es_ES" : "en_US";
-  document.querySelector('meta[property="og:url"]').content = `https://korall-bs.presentto.online/${selectedLanguage === "en" ? "?lang=en" : ""}`;
-  document.querySelector('link[rel="canonical"]').href = `https://korall-bs.presentto.online/${selectedLanguage === "en" ? "?lang=en" : ""}`;
-  languageButton.textContent = selectedLanguage === "es" ? "EN" : "ES";
-  languageButton.lang = selectedLanguage === "es" ? "en" : "es";
-  languageButton.setAttribute("aria-label", copy.languageToggle);
-  menuButton.setAttribute("aria-label", menuButton.getAttribute("aria-expanded") === "true" ? copy.menuClose : copy.menuOpen);
-  try {
-    localStorage.setItem("korall-language", selectedLanguage);
-  } catch {
-    // Language changes still work when browser storage is unavailable.
-  }
-
-  if (updateAddress) {
-    const currentUrl = new URL(window.location.href);
-    currentUrl.searchParams.set("lang", selectedLanguage);
-    window.history.replaceState({}, "", `${currentUrl.pathname}${currentUrl.search}${currentUrl.hash}`);
-  }
-}
-
-languageButton.addEventListener("click", () => {
-  applyLanguage(document.documentElement.lang === "es" ? "en" : "es", true);
-  if (menuButton.getAttribute("aria-expanded") === "true") closeMenu();
-});
-
-menuButton.addEventListener("click", () => {
-  const isExpanded = menuButton.getAttribute("aria-expanded") === "true";
-  menuButton.setAttribute("aria-expanded", String(!isExpanded));
-  menuButton.setAttribute("aria-label", isExpanded ? translations[document.documentElement.lang].menuOpen : translations[document.documentElement.lang].menuClose);
-  navigation.classList.toggle("is-open", !isExpanded);
-});
-
-navigation.addEventListener("click", (event) => {
-  if (event.target.closest("a")) closeMenu();
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && menuButton.getAttribute("aria-expanded") === "true") {
-    closeMenu();
-    menuButton.focus();
-  }
-});
-
-document.addEventListener("click", (event) => {
-  if (menuButton.getAttribute("aria-expanded") === "true" && !navigation.contains(event.target) && !menuButton.contains(event.target)) closeMenu();
-});
-
-window.addEventListener("resize", () => {
-  if (window.innerWidth > 720) closeMenu();
-});
-
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-  if (!form.reportValidity()) return;
-
-  const copy = translations[document.documentElement.lang];
-  const values = new FormData(form);
-  const roleKeys = { player: "rolePlayer", coach: "roleCoach", analyst: "roleAnalyst", other: "roleOther" };
-  const regionKeys = { Europe: "regionEurope", "North America": "regionNorthAmerica", "Latin America": "regionLatinAmerica", MENA: "regionMena", "Asia-Pacific": "regionAsiaPacific", Other: "regionOther" };
-  const body = [
-    `${copy.mailPlayer}: ${values.get("playerName").trim()}`,
-    `${copy.mailTag}: ${values.get("playerTag").trim()}`,
-    `${copy.mailRole}: ${copy[roleKeys[values.get("role")]]}`,
-    `${copy.mailRegion}: ${copy[regionKeys[values.get("region")]]}`,
-    `${copy.mailAvailability}: ${values.get("availability").trim()}`,
-    `${copy.mailEmail}: ${values.get("email").trim()}`,
-    `${copy.mailExperience}: ${values.get("experience").trim() || copy.mailNone}`,
-    `${copy.mailConsent}: yes`
-  ].join("\n");
-  const subject = encodeURIComponent(copy.mailTitle);
-  const message = encodeURIComponent(body);
-
-  formStatus.textContent = copy.formReady;
-  window.location.href = `mailto:hola@korall.team?subject=${subject}&body=${message}`;
-});
-
-const revealElements = document.querySelectorAll(".reveal");
-
-if (motionPreference.matches || !("IntersectionObserver" in window)) {
-  revealElements.forEach((element) => element.classList.add("is-visible"));
-} else {
-  const revealObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  revealElements.forEach((element) => revealObserver.observe(element));
-}
-
-let savedLanguage = "es";
-let updateAddress = false;
-try {
-  const queryLanguage = new URLSearchParams(window.location.search).get("lang");
-  if (queryLanguage === "es" || queryLanguage === "en") {
-    savedLanguage = queryLanguage;
-    updateAddress = true;
-  } else {
-    savedLanguage = localStorage.getItem("korall-language") || savedLanguage;
-    updateAddress = savedLanguage === "en";
-  }
-} catch {
-  // The default language remains available without browser storage.
-}
-applyLanguage(savedLanguage, updateAddress);
+export const regionOptions = [
+  ["Europe", "regionEurope"],
+  ["North America", "regionNorthAmerica"],
+  ["Latin America", "regionLatinAmerica"],
+  ["MENA", "regionMena"],
+  ["Asia-Pacific", "regionAsiaPacific"],
+  ["Other", "regionOther"]
+];
